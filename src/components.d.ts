@@ -10,8 +10,10 @@ export namespace Components {
     interface SebCheckbox {
         "_id"?: string;
         "checked": boolean;
+        "description"?: string | HTMLElement;
         "disabled"?: boolean;
-        "label": string;
+        "error"?: string | HTMLElement;
+        "label": HTMLElement;
         "name"?: string;
     }
     interface SebModal {
@@ -43,8 +45,10 @@ declare namespace LocalJSX {
     interface SebCheckbox {
         "_id"?: string;
         "checked"?: boolean;
+        "description"?: string | HTMLElement;
         "disabled"?: boolean;
-        "label"?: string;
+        "error"?: string | HTMLElement;
+        "label"?: HTMLElement;
         "name"?: string;
     }
     interface SebModal {

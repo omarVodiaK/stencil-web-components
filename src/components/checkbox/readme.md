@@ -7,13 +7,15 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default     |
-| ---------- | ---------- | ----------- | --------- | ----------- |
-| `_id`      | `_id`      |             | `string`  | `undefined` |
-| `checked`  | `checked`  |             | `boolean` | `undefined` |
-| `disabled` | `disabled` |             | `boolean` | `undefined` |
-| `label`    | `label`    |             | `string`  | `undefined` |
-| `name`     | `name`     |             | `string`  | `undefined` |
+| Property      | Attribute     | Description | Type                    | Default     |
+| ------------- | ------------- | ----------- | ----------------------- | ----------- |
+| `_id`         | `_id`         |             | `string`                | `undefined` |
+| `checked`     | `checked`     |             | `boolean`               | `undefined` |
+| `description` | `description` |             | `HTMLElement \| string` | `undefined` |
+| `disabled`    | `disabled`    |             | `boolean`               | `undefined` |
+| `error`       | `error`       |             | `HTMLElement \| string` | `undefined` |
+| `label`       | --            |             | `HTMLElement`           | `undefined` |
+| `name`        | `name`        |             | `string`                | `undefined` |
 
 
 ----------------------------------------------

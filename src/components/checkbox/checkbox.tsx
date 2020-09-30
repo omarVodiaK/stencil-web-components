@@ -1,4 +1,5 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, Host } from '@stencil/core';
+import { isString } from '../../utils/utils';
 
 @Component({
   tag: 'seb-checkbox',
@@ -9,20 +10,25 @@ export class Checkbox {
   @Prop() _id?: string;
   @Prop() name?: string;
   @Prop() disabled?: boolean;
-  @Prop() label: string;
+  @Prop() label: HTMLElement;
+  @Prop() description?: string | HTMLElement;
+  @Prop() error?: string | HTMLElement;
   @Prop() checked: boolean;
 
   render() {
     return (
-      <div class="seb-checkbox">
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" name={this.name} id={this._id} class="custom-control-input" checked={this.checked} disabled={this.disabled} />
-
-          <label class={{ 'disabled': this.disabled, 'custom-control-label': true }} htmlFor={this._id}>
-            {this.label}
-          </label>
+      <Host>
+        <div class="seb-checkbox">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" name={this.name} id={this._id} class="custom-control-input" checked={this.checked} disabled={this.disabled} />
+            <label class={{ 'disabled': this.disabled, 'custom-control-label': true }} htmlFor={this._id}>
+              {this.label}
+            </label>
+          </div>
+          {isString(this.description) ? <p class="custom-control-description">{this.description}</p> : this.description}
         </div>
-      </div>
+        {isString(this.error) ? <span class="text-danger">{this.error}</span> : this.error}
+      </Host>
     );
   }
 }
