@@ -22,7 +22,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@sebgroup/bootstrap": "^5.3.0",
+    "@sebgroup/bootstrap": "^5.3.1",
     "@stencil/core": "^2.0.1",
     "@types/jest": "^26.0.14"
   },

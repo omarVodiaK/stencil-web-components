@@ -1,0 +1,33 @@
+@import '~@sebgroup/bootstrap/scss/bootstrap';
+
+::-webkit-calendar-picker-indicator {
+  color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  background: url(../../assets/seb-calendar-icon.svg) no-repeat 0.25rem; // TODO: fix this as it's not working
+}
+
+input.seb-datepicker-native {
+  padding-right: 0.5rem;
+}
+
+::-webkit-outer-spin-button,
+::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-group {
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  .custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+}
+
+.is-invalid {
+  border-bottom: var(--danger) 1.5px solid;
+}

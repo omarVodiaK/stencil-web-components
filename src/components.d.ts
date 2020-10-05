@@ -22,6 +22,38 @@ export namespace Components {
         "size"?: ModalSize;
         "toggle"?: boolean;
     }
+    interface WebDatepicker {
+        /**
+          * Element class
+         */
+        "class"?: string;
+        /**
+          * Property sets whether datepicker is disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * Property sets whether SEB styled datepicker will be rendered despite the browser used
+         */
+        "forceCustom"?: boolean;
+        "localeCode": string;
+        /**
+          * Maximum range of date that can be selected
+         */
+        "max"?: Date;
+        /**
+          * Minimum range of date that can be selected
+         */
+        "min"?: Date;
+        /**
+          * Property sets whether a datepicker is a month picker
+         */
+        "monthPicker"?: boolean;
+        /**
+          * Element placeholder
+         */
+        "placeholder": string;
+        "value": Date | null;
+    }
 }
 declare global {
     interface HTMLSebCheckboxElement extends Components.SebCheckbox, HTMLStencilElement {
@@ -36,9 +68,16 @@ declare global {
         prototype: HTMLSebModalElement;
         new (): HTMLSebModalElement;
     };
+    interface HTMLWebDatepickerElement extends Components.WebDatepicker, HTMLStencilElement {
+    }
+    var HTMLWebDatepickerElement: {
+        prototype: HTMLWebDatepickerElement;
+        new (): HTMLWebDatepickerElement;
+    };
     interface HTMLElementTagNameMap {
         "seb-checkbox": HTMLSebCheckboxElement;
         "seb-modal": HTMLSebModalElement;
+        "web-datepicker": HTMLWebDatepickerElement;
     }
 }
 declare namespace LocalJSX {
@@ -58,9 +97,43 @@ declare namespace LocalJSX {
         "size"?: ModalSize;
         "toggle"?: boolean;
     }
+    interface WebDatepicker {
+        /**
+          * Element class
+         */
+        "class"?: string;
+        /**
+          * Property sets whether datepicker is disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * Property sets whether SEB styled datepicker will be rendered despite the browser used
+         */
+        "forceCustom"?: boolean;
+        "localeCode"?: string;
+        /**
+          * Maximum range of date that can be selected
+         */
+        "max"?: Date;
+        /**
+          * Minimum range of date that can be selected
+         */
+        "min"?: Date;
+        /**
+          * Property sets whether a datepicker is a month picker
+         */
+        "monthPicker"?: boolean;
+        "onValueChange"?: (event: CustomEvent<any>) => void;
+        /**
+          * Element placeholder
+         */
+        "placeholder"?: string;
+        "value"?: Date | null;
+    }
     interface IntrinsicElements {
         "seb-checkbox": SebCheckbox;
         "seb-modal": SebModal;
+        "web-datepicker": WebDatepicker;
     }
 }
 export { LocalJSX as JSX };
@@ -69,6 +142,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "seb-checkbox": LocalJSX.SebCheckbox & JSXBase.HTMLAttributes<HTMLSebCheckboxElement>;
             "seb-modal": LocalJSX.SebModal & JSXBase.HTMLAttributes<HTMLSebModalElement>;
+            "web-datepicker": LocalJSX.WebDatepicker & JSXBase.HTMLAttributes<HTMLWebDatepickerElement>;
         }
     }
 }

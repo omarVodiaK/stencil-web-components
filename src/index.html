@@ -6,9 +6,29 @@
     <title>Stencil Component Starter</title>
 
     <script type="module" src="./modal.js"></script>
+    <script type="module" src="/build/web-components.esm.js"></script>
     <script nomodule src="/build/web-components.js"></script>
   </head>
   <body>
-    <seb-modal toggle="true" last="'Don't call me a framework' JS"></seb-modal>
+    <!-- <seb-modal toggle="true" last="'Don't call me a framework' JS"></seb-modal> -->
+    <div id="value"></div>
+    <web-datepicker forceCustom="true" />
+
+    <script>
+      <!-- setTimeout(() => { -->
+      let datepicker = document.querySelector('web-datepicker');
+      datepicker.localeCode = 'fr-FR';
+      datepicker.forceCustom = true;
+      datepicker.monthPicker = false;
+      <!-- datepicker.value = new Date(); -->
+      console.log(datepicker);
+
+      setInterval(() => {
+        let value = document.querySelector('#value');
+        value.innerHTML = datepicker.value;
+        console.log(datepicker.value);
+      }, 2000);
+      <!-- }, 0); -->
+    </script>
   </body>
 </html>
