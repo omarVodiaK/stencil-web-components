@@ -3,7 +3,7 @@
 ::-webkit-calendar-picker-indicator {
   color: rgba(0, 0, 0, 0);
   cursor: pointer;
-  background: url(../../assets/seb-calendar-icon.svg) no-repeat 0.25rem; // TODO: fix this as it's not working
+  background: url(./web-components/assets/seb-calendar-icon.svg) no-repeat 0.25rem;
 }
 
 input.seb-datepicker-native {
@@ -29,5 +29,5 @@ input.seb-datepicker-native {
 }
 
 .is-invalid {
-  border-bottom: var(--danger) 1.5px solid;
+  border-bottom: var(--danger) 1.5px solid !important;
 }

@@ -1,9 +1,10 @@
-import { Component, h, Prop, State, Host, Watch, EventEmitter, Event } from '@stencil/core';
+import { Component, h, Prop, Host, Watch, EventEmitter, Event } from '@stencil/core';
 import { padNumber } from '../../utils/formatters';
 
 @Component({
   tag: 'web-datepicker',
   styleUrl: 'web-datepicker.scss',
+  assetsDirs: ['assets'],
   shadow: false,
 })
 export class WebDatepicker {
@@ -26,8 +27,6 @@ export class WebDatepicker {
 
   @Prop() localeCode: string;
 
-  @State() _localeCode: string;
-
   inputRawValue: string;
 
   @Event() valueChange: EventEmitter;
@@ -44,7 +43,7 @@ export class WebDatepicker {
 
   componentWillLoad() {
     this.inputRawValue = this.getStringFromDate(this.value);
-    this.localCodeHandler(this.locale);
+    this.localCodeHandler();
   }
 
   @Watch('value')
@@ -53,8 +52,7 @@ export class WebDatepicker {
   }
 
   @Watch('localeCode')
-  localCodeHandler(newValue: string) {
-    this._localeCode = newValue;
+  localCodeHandler() {
     const date: Date = new Date(2012, 0, 5);
     const locale = new Intl.DateTimeFormat(this.localeCode, { month: 'long' });
     const rtf: any = this.getRelativeTimeFormat(this.localeCode);
@@ -170,9 +168,8 @@ export class WebDatepicker {
     }
   }
 
-  isValidDate = (d: Date): boolean => {
-    return !!(d && d instanceof Date && !isNaN(d.getTime()));
-  };
+  // if not d return true is for the initial case where d is not set
+  isValidDate = (d: Date): boolean => (d ? !!(d instanceof Date && !isNaN(d.getTime())) : true);
 
   getRelativeTimeFormat(code: string): any {
     if ((Intl as any)['RelativeTimeFormat']) {
@@ -218,36 +215,35 @@ export class WebDatepicker {
     return input.value !== notADateValue;
   }
 
-  styles = { display: this.monthPicker ? 'none' : 'inherit' };
+  styles: { [key: string]: string } = {
+    display: this.monthPicker ? 'none' : 'inherit',
+  };
 
   render() {
     return (
       <Host>
         {!this.forceCustom && this.supportsInputOfType('month') ? (
           this.monthPicker ? (
-            <div>
-              <input
-                type="month"
-                class={{ 'form-control seb-datepicker-native': true, 'is-invalid': !this.isValidDate(this.value) }}
-                min={this.getStringFromDate(this.min)}
-                max={this.getStringFromDate(this.max)}
-                disabled={this.disabled}
-                value={this.inputRawValue}
-                onInput={this.inputChanged.bind(this)}
-              />
-            </div>
+            <input
+              type="month"
+              class={{ 'form-control seb-datepicker-native': true, 'is-invalid': !this.isValidDate(this.value) }}
+              min={this.getStringFromDate(this.min)}
+              max={this.getStringFromDate(this.max)}
+              disabled={this.disabled}
+              value={this.inputRawValue}
+              onInput={this.inputChanged.bind(this)}
+            />
           ) : (
-            <div>
-              <input
-                type="date"
-                class={{ 'form-control seb-datepicker-native': true, 'is-invalid': !this.isValidDate(this.value) }}
-                min={this.getStringFromDate(this.min)}
-                max={this.getStringFromDate(this.max)}
-                disabled={this.disabled}
-                value={this.inputRawValue}
-                onInput={this.inputChanged.bind(this)}
-              />
-            </div>
+            <input
+              type="date"
+              style={this.styles}
+              class={{ 'form-control seb-datepicker-native': true, 'is-invalid': !this.isValidDate(this.value) }}
+              min={this.getStringFromDate(this.min)}
+              max={this.getStringFromDate(this.max)}
+              disabled={this.disabled}
+              value={this.inputRawValue}
+              onInput={this.inputChanged.bind(this)}
+            />
           )
         ) : (
           <div class="input-group">

@@ -17,16 +17,19 @@
     <script>
       <!-- setTimeout(() => { -->
       let datepicker = document.querySelector('web-datepicker');
-      datepicker.localeCode = 'fr-FR';
-      datepicker.forceCustom = true;
+      datepicker.localeCode = 'en-US';
+      datepicker.forceCustom = false;
       datepicker.monthPicker = false;
-      <!-- datepicker.value = new Date(); -->
+      datepicker.value = new Date();
       console.log(datepicker);
 
       setInterval(() => {
         let value = document.querySelector('#value');
         value.innerHTML = datepicker.value;
         console.log(datepicker.value);
+        let x = 'en-US' ? 'fr-FR' : 'sv-SV';
+        datepicker.localeCode === x;
+        console.log(datepicker.localeCode, x);
       }, 2000);
       <!-- }, 0); -->
     </script>
